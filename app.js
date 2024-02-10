@@ -1,5 +1,4 @@
 const fs = require('fs');
-console.log(fs);
 
 const genders = ['male', 'female'];
 const maleNames = ['Adam', 'Adrian', 'Max', 'Timothy'];
@@ -8,6 +7,10 @@ const lastNames = ['Doe', 'Boe', 'Northon', 'Parker'];
 const people = [];
 
 const randChoice = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const generatePhoneNumber = () => {
+  const phoneNumber = Math.floor(100000000 + Math.random() * 900000000);
+  return phoneNumber.toString();
+};
 
 for (let i = 0; i < 20; i++) {
   const gender = randChoice(genders);
@@ -16,7 +19,10 @@ for (let i = 0; i < 20; i++) {
   const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
   const age = Math.floor(Math.random() * 50) + 18;
 
-  people.push({ gender, firstName, lastName, age });
+  const phoneNumber = generatePhoneNumber();
+  const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`;
+
+  people.push({ gender, firstName, lastName, age, email, phoneNumber });
 }
 
 const data = JSON.stringify(people, null, 2);
